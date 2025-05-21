@@ -1,0 +1,14 @@
+package model;
+
+import java.sql.Date;
+
+public class GiaoVien {
+	private String maGV;
+	private String tenGV;
+	private boolean gioiTinh;
+	private Date ngaySinh;
+	private String sdt;
+	private String email;
+	
+	
+}

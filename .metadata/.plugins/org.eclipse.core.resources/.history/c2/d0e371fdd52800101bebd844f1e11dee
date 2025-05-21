@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="model.TaiKhoan" %>
+<%
+	TaiKhoan tk = (TaiKhoan) session.getAttribute("user");
+	if (tk == null || tk.getMaGV() != null) {
+    	response.sendRedirect("../dangnhap.jsp");
+    	return;
+	}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Chào mừng học sinh:</h2>
+	
+	    <ul>
+	        <li><a href="xem_dethi.jsp">Vào thi</a></li>
+	        <li><a href="xem_ketqua.jsp">Xem kết quả</a></li>
+	        <li><a href="../dangxuat.jsp">Đăng xuất</a></li>
+	    </ul>
+
+</body>
+</html>

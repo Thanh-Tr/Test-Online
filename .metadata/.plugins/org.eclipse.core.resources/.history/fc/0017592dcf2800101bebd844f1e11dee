@@ -1,0 +1,33 @@
+package model;
+
+public class TaiKhoan {
+	private String tenDangNhap;
+	private String matKhau;
+	private String maGV;
+	public TaiKhoan() {	}
+	public TaiKhoan(String tenDangNhap, String matKhau, String maGV) {
+		this.tenDangNhap = tenDangNhap;
+		this.matKhau = matKhau;
+		this.maGV = maGV;
+	}
+	public String getTenDangNhap() {
+		return tenDangNhap;
+	}
+	public void setTenDangNhap(String tenDangNhap) {
+		this.tenDangNhap = tenDangNhap;
+	}
+	public String getMatKhau() {
+		return matKhau;
+	}
+	public void setMatKhau(String matKhau) {
+		this.matKhau = matKhau;
+	}
+	public String getMaGV() {
+		return maGV;
+	}
+	public void setMaGV(String maGV) {
+		this.maGV = maGV;
+	}
+	
+	
+}

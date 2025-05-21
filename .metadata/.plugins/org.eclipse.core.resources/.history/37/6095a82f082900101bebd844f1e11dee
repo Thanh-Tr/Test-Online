@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quản lý học sinh</title>
+</head>
+<body>
+    <h2>Danh sách học sinh</h2>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>Mã HS</th><th>Tên HS</th><th>Lớp</th><th>Giới tính</th><th>Ngày sinh</th><th>Cấp tài khoản</th>
+        </tr>
+        <c:forEach var="iter" items="hs">
+        <tr>
+            <td>${iter.maHS}</td>
+            <td>${iter.tenHS}</td>
+            <td>${iter.gioiTinh}</td>
+            <td>${iter.ngaySinh}</td>
+            <td>${iter.lop}</td>
+            <td>
+                <form method="post" action="GiaoVienServlet">
+                    <input type="hidden" name="action" value="captaikhoan"/>
+                    <input type="hidden" name="mahs" value="${iter.maHS}"/>
+                    <input type="text" name="matkhau" placeholder="Mật khẩu" required/>
+                    <input type="submit" value="Cấp"/>
+                </form>
+            </td>
+        </tr>
+        </c:forEach>
+    </table>
+    <br/>
+    <a href="trangchugv.jsp">⬅ Về trang chủ</a>
+</body>
+</html>

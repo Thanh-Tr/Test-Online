@@ -1,0 +1,44 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import model.GiaoVien;
+
+public class GiaoVienDAO {
+	 private static final String SELECT_BY_USERNAME = 
+		        "SELECT gv.* FROM GIAOVIEN gv JOIN TAIKHOAN tk ON gv.MaGV = tk.MaGV WHERE tk.TenDangNhap = ?";
+
+		    protected Connection getConnection() {
+		        try {
+		            Class.forName("com.mysql.cj.jdbc.Driver");
+		            return DriverManager.getConnection(
+		                "jdbc:mysql://localhost:3306/ht_thitructuyen", "root", "842641");
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		            return null;
+		        }
+		    }
+
+		    public GiaoVien xemThongTinGiaoVien(String tenDangNhap) {
+		        GiaoVien gv = null;
+		        try (Connection con = getConnection();
+		             PreparedStatement pst = con.prepareStatement(SELECT_BY_USERNAME)) {
+		            pst.setString(1, tenDangNhap);
+		            ResultSet rs = pst.executeQuery();
+		            if (rs.next()) {
+		                gv = new GiaoVien();
+		                gv.setMaGV(rs.getString("MaGV"));
+		                gv.setTenGV(rs.getString("TenGV"));
+		                gv.setEmail(rs.getString("Email"));
+		                gv.setSdt(rs.getString("Sdt"));
+		            }
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		        return gv;
+		    }
+}

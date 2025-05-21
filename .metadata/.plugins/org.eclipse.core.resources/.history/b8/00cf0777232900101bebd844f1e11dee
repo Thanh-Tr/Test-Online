@@ -1,0 +1,104 @@
+package dao;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.CauHoi;
+
+public class CauHoiDAO {
+    private final String URL = "jdbc:mysql://localhost:3306/ht_thitructuyen";
+    private final String USER = "root";
+    private final String PASS = "842641";
+
+    private Connection getConnection() throws SQLException {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return DriverManager.getConnection(URL, USER, PASS);
+    }
+
+    public List<CauHoi> layTatCaCauHoi() {
+        List<CauHoi> ds = new ArrayList<>();
+        String sql = "SELECT * FROM cauhoi";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+
+            while (rs.next()) {
+                CauHoi ch = new CauHoi();
+                ch.setMaCH(rs.getString("MaCH"));
+                ch.setMoTaCH(rs.getString("MoTaCH"));
+                ch.setCauA(rs.getString("CauA"));
+                ch.setCauB(rs.getString("CauB"));
+                ch.setCauC(rs.getString("CauC"));
+                ch.setCauD(rs.getString("CauD"));
+                ch.setDapAn(rs.getString("DapAn"));
+                ds.add(ch);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ds;
+    }
+
+    public void themCauHoi(CauHoi ch) {
+        String sql = "INSERT INTO cauhoi (MoTaCH, CauA, CauB, CauC, CauD, DapAn) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setString(1, ch.getMoTaCH());
+            pst.setString(2, ch.getCauA());
+            pst.setString(3, ch.getCauB());
+            pst.setString(4, ch.getCaC());
+            pst.setString(5, ch.getDapAnD());
+            pst.setString(6, ch.getDapAnDung());
+
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void xoaCauHoi(int maCH) {
+        String sql = "DELETE FROM cauhoi WHERE MaCH = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setInt(1, maCH);
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void capNhatCauHoi(CauHoi ch) {
+        String sql = "UPDATE cauhoi SET NoiDung=?, DapAnA=?, DapAnB=?, DapAnC=?, DapAnD=?, DapAnDung=? WHERE MaCH=?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setString(1, ch.getNoiDung());
+            pst.setString(2, ch.getDapAnA());
+            pst.setString(3, ch.getDapAnB());
+            pst.setString(4, ch.getDapAnC());
+            pst.setString(5, ch.getDapAnD());
+            pst.setString(6, ch.getDapAnDung());
+            pst.setInt(7, ch.getMaCH());
+
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}

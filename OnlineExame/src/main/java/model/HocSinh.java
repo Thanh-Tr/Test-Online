@@ -1,0 +1,51 @@
+package model;
+
+import java.sql.Date;
+
+public class HocSinh {
+	private String maHS;
+	private String tenHS;
+	private boolean gioiTinh;
+	private Date ngaySinh;
+	private String lop;
+	
+	public HocSinh() {}
+	public HocSinh(String maHS, String tenHS, boolean gioiTinh, Date ngaySinh, String lop) {
+		this.maHS = maHS;
+		this.tenHS = tenHS;
+		this.gioiTinh = gioiTinh;
+		this.ngaySinh = ngaySinh;
+		this.lop = lop;
+	}
+	public String getMaHS() {
+		return maHS;
+	}
+	public void setMaHS(String maHS) {
+		this.maHS = maHS;
+	}
+	public String getTenHS() {
+		return tenHS;
+	}
+	public void setTenHS(String tenHS) {
+		this.tenHS = tenHS;
+	}
+	public boolean isGioiTinh() {
+		return gioiTinh;
+	}
+	public void setGioiTinh(boolean gioiTinh) {
+		this.gioiTinh = gioiTinh;
+	}
+	public Date getNgaySinh() {
+		return ngaySinh;
+	}
+	public void setNgaySinh(Date ngaySinh) {
+		this.ngaySinh = ngaySinh;
+	}
+	public String getLop() {
+		return lop;
+	}
+	public void setLop(String lop) {
+		this.lop = lop;
+	}
+	
+}

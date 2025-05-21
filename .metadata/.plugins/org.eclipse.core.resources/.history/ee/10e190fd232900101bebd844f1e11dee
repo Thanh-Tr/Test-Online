@@ -1,0 +1,40 @@
+package controller;
+
+import dao.CauHoiDAO;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
+import jakarta.servlet.*;
+import model.CauHoi;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+@WebServlet("/chon-cau-hoi")
+public class ChonCauHoiServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String[] selected = request.getParameterValues("chon");
+        String maDe = request.getParameter("maDe");
+        HttpSession session = request.getSession();
+
+        List<String> dsMaCH = (List<String>) session.getAttribute("dsMaCauHoi");
+        if (dsMaCH == null) dsMaCH = new ArrayList<>();
+
+        if (selected != null) {
+            for (String maCH : selected) {
+                if (!dsMaCH.contains(maCH)) {
+                    dsMaCH.add(maCH);
+                }
+            }
+        }
+
+        session.setAttribute("dsMaCauHoi", dsMaCH);
+        request.setAttribute("dsCauHoi", new CauHoiDAO().layTatCaCauHoi());
+        request.getRequestDispatcher("chon_cauhoi.jsp?maDe=" + maDe).forward(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("dsCauHoi", new CauHoiDAO().layTatCaCauHoi());
+        request.getRequestDispatcher("chon_cauhoi.jsp").forward(request, response);
+    }
+}

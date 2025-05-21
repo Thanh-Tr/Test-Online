@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+</head>
+<body>
+    <h2>Xin chào: ${gv.tenGV}</h2>
+    <p>Email: ${gv.email}</p>
+    <p>Số điện thoại: ${gv.sdt}</p>
+    <ul>
+        <form method="post" action="danhsachhocsinh" >
+        	<input type="hidden" name="action" value="dsHS">
+        	<input type="submit" value="Quản lý học sinh">
+        </form>
+        <form method="post" action="" >
+        	<input type="hidden" name="action" value="dsDT">
+        	<input type="submit" value="Quản lý đề thi">
+        </form>
+        <form method="post" action="" >
+        	<input type="hidden" name="action" value="dsKQ">
+        	<input type="submit" value="Quản lý hồ sơ học tập">
+        </form>
+        <form method="post" action="" >
+        	<input type="hidden" name="action" value="dangxuat">
+        	<input type="submit" value="Đăng xuất">
+        </form>
+    </ul>
+</body>
+</html>

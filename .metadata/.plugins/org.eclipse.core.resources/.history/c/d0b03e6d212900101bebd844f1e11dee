@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quản lý đề thi</title>
+</head>
+<body>
+    <h2>Tạo đề thi mới</h2>
+    <form action="taodethi" method="post">
+    	Mã đề: <input type="text" name="madt" required>
+        Tên đề thi: <input type="text" name="tendt" required><br>
+        Thời gian (phút): <input type="number" name="thoiGian" required><br>
+        <input type="submit" value="Tạo đề thi">
+    </form>
+
+</body>
+</html>

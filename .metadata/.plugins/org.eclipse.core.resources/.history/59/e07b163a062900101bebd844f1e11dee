@@ -1,0 +1,38 @@
+package controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+import dao.HocSinhDAO;
+import dao.TaiKhoanDAO;
+
+@WebServlet("/GiaoVienServlet")
+public class GiaoVienServlet extends HttpServlet {
+	
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter("action");
+		String url = "/danhsach.jsp";
+
+        if ("dsHS".equals(action)) {
+            String mahs = request.getParameter("mahs");
+            String matkhau = request.getParameter("matkhau");
+
+            TaiKhoanDAO dao = new TaiKhoanDAO();
+            boolean success = dao.capTaiKhoanChoHocSinh(mahs, matkhau);
+
+            // Chuyển hướng lại trang danh sách
+            response.sendRedirect("danhsach.jsp?success=" + success);
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		doGet(request, response);
+	}
+
+}

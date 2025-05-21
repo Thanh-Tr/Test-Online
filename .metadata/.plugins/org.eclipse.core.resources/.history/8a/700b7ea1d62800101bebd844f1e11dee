@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Danh sach hoc sinh</h2>
+	<table border="1">
+		<tr><th>Ma HS</th><th>Ten</th><th>Lop</th><th>Thao tac</th></tr>
+		<c:forEach var="hs" items="${dsHS}">
+			<tr>
+				<td>${hs.maHS}</td>
+				<td>${hs.tenHS}</td>
+				<td>${hs.gioiTinh}</td>
+				<td>${hs.ngaySinh}</td>
+				<td>${hs.lop}</td>
+				<td><a href="giaovien?action=taoTK&maHS=${hs.maHS}">Cap tai khoan</a></td>
+			</tr>
+		</c:forEach>
+	</table>
+</body>
+</html>

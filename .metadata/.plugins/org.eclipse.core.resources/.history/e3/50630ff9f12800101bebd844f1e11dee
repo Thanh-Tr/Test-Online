@@ -1,0 +1,42 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import util.DBUtil;
+
+public class DeThiDAO {
+	private static final String INSERT_SQL = "INSERT INTO DETHI() VALUES()";
+	
+	protected Connection getConnection() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/ht_thitructuyen";
+			String user = "root";
+			String password = "842641";
+			connection = DriverManager.getConnection(url, user, password);
+		} catch (ClassNotFoundException cnfe) {
+			cnfe.printStackTrace();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+		return connection;
+	}
+	
+	public void taoDeThi(String ten, int thoiGian, String maGV) {
+		try {
+			String sql = "insert into DETHI (MaDT, TenDT, ThoiGianLamBai, MaGV) values (?, ?, ?, ?)";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1,  "DT" + System.currentTimeMillis());
+			st.setString(2, ten);
+			st.setInt(3, thoiGian);
+			st.setString(4, maGV);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}

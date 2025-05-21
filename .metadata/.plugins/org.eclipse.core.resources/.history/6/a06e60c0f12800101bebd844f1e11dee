@@ -1,0 +1,26 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import util.DBUtil;
+
+public class DeThiDAO {
+	private static final String INSERT_SQL = "INSERT INTO DETHI() VALUES()";
+	
+	
+	public void taoDeThi(String ten, int thoiGian, String maGV) {
+		try {
+			String sql = "insert into DETHI (MaDT, TenDT, ThoiGianLamBai, MaGV) values (?, ?, ?, ?)";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1,  "DT" + System.currentTimeMillis());
+			st.setString(2, ten);
+			st.setInt(3, thoiGian);
+			st.setString(4, maGV);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}

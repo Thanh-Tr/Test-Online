@@ -1,0 +1,55 @@
+package controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.DeThi;
+import model.TaiKhoan;
+
+import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
+
+import dao.DeThiDAO;
+
+@WebServlet("/taodethi")
+public class TaoDeThiServlet extends HttpServlet {
+	
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 HttpSession session = request.getSession(false);
+	        TaiKhoan tk = (TaiKhoan) session.getAttribute("user");
+
+	        if (tk == null || tk.getMaGV() == null) {
+	            response.sendRedirect("dangnhap.jsp");
+	            return;
+	        }
+
+	        String maDT = request.getParameter("madt");
+	        String tenDT = request.getParameter("tendt");
+	        int thoiGian = Integer.parseInt(request.getParameter("thoiGian"));
+	        String maGV = tk.getMaGV();
+
+	        DeThi deThi = new DeThi();
+	        deThi.setMaDT(maDT);
+	        deThi.setTenDT(tenDT);
+	        deThi.setThoiGianLamBai(thoiGian);
+	        deThi.setMaGV(maGV);
+
+	        new DeThiDAO().themDeThi(deThi);
+
+	        response.sendRedirect("trangchugv.jsp");
+	    }
+		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

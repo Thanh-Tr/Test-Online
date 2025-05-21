@@ -1,0 +1,56 @@
+package controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.GiaoVien;
+import model.HocSinh;
+import model.TaiKhoan;
+
+import java.io.IOException;
+import java.sql.Date;
+
+import dao.GiaoVienDAO;
+import dao.HocSinhDAO;
+import dao.TaiKhoanDAO;
+
+@WebServlet("/dangnhap")
+public class DangNhapServlet extends HttpServlet {
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String user = request.getParameter("username");
+		String pass = request.getParameter("password");
+		String url = "/dangnhap.jsp";
+		
+		TaiKhoan tk = new TaiKhoanDAO().kiemTraDangNhap(user);
+		
+		if(tk.getTenDangNhap().equals(user) || tk.getMatKhau().equals(pass)) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", tk);
+			if(tk.getMaGV() != null) {
+				GiaoVien gv = new GiaoVienDAO().xemThongTinGiaoVien(user);
+				url = "trangchugv.jsp";
+				session.setAttribute("gv", gv);
+			} else {
+				HocSinh hs = new HocSinhDAO().layThongTinHocSinh(user);
+				url = "trangchuhs.jsp";
+				session.setAttribute("hs", hs);
+			}
+		} else {
+			request.setAttribute("error", "Tên đăng nhập hoặc mật khẩu chưa chính xác");
+			url = "/dangnhap.jsp";
+		}
+		
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+
+}

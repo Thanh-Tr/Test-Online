@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+</head>
+<body>
+    <h2>Xin chào giáo viên: ${gv.tenGV}</h2>
+    <ul>
+        <form method="post" action="GiaoVienServlet" >
+        	<input type="hidden" name="action" value="dsHS">
+        	<input type="submit" value="Quản lý học sinh">
+        </form>
+        <li><a href="taodethi.jsp">Tạo đề thi</a></li>
+        <li><a href="dangnhap.jsp">Đăng xuất</a></li>
+    </ul>
+</body>
+</html>

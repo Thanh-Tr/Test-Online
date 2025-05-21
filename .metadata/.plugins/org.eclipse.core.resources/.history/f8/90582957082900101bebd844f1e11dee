@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quản lý học sinh</title>
+</head>
+<body>
+        <h2>Danh sách học sinh</h2>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Mã HS</th>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Lớp</th>
+        </tr>
+        <%
+            List<HocSinh> ds = (List<HocSinh>) request.getAttribute("dsHocSinh");
+            for (HocSinh hs : ds) {
+        %>
+        <tr>
+            <td><%= hs.getMaHS() %></td>
+            <td><%= hs.getTenHS() %></td>
+            <td><%= hs.getNgaySinh() %></td>
+            <td><%= hs.isGioiTinh() ? "Nam" : "Nữ" %></td>
+            <td><%= hs.getLop() %></td>
+        </tr>
+        <% } %>
+    </table>
+</body>
+</html>

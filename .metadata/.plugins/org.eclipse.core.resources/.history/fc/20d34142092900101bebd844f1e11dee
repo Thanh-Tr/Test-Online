@@ -1,0 +1,34 @@
+package controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import model.TaiKhoan;
+
+import java.io.IOException;
+
+import dao.DeThiDAO;
+
+@WebServlet("/taodethi")
+public class TaoDeThiServlet extends HttpServlet {
+	
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String ten = request.getParameter("tenDT");
+		int tg = Integer.parseInt(request.getParameter("thoigian"));
+		TaiKhoan tk = (TaiKhoan) request.getSession().getAttribute("user");
+		String maGV = tk.getMaGV();
+		new DeThiDAO().taoDeThi(ten, tg, maGV);
+		response.sendRedirect("jsp/giaovien/trangchu.jsp");
+		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

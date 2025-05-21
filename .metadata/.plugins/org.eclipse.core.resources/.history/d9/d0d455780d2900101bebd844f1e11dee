@@ -1,0 +1,38 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.*, model.CauHoi" %>
+<!DOCTYPE html>
+<html>
+<head><title>Chọn câu hỏi cho đề</title></head>
+<body>
+<h2>Chọn câu hỏi cho đề</h2>
+
+<form method="post" action="chon-cau-hoi">
+    <input type="hidden" name="madt" value="${param.madt}">
+    <table border="1">
+        <tr><th>Chọn</th><th>Mã câu hỏi</th><th>Nội dung</th></tr>
+        <%
+            List<CauHoi> ds = (List<CauHoi>) request.getAttribute("dsCauHoi");
+            if (ds != null)
+                for (CauHoi ch : ds) {
+        %>
+        <tr>
+            <td><input type="checkbox" name="chon" value="<%= ch.getMaCH() %>"></td>
+            <td><%= ch.getMaCH() %></td>
+            <td><%= ch.getMoTaCH() %></td>
+            <td><%= ch.getCauA() %></td>
+            <td><%= ch.getCauB() %></td>
+            <td><%= ch.getCauC() %></td>
+            <td><%= ch.getCauD() %></td>
+            <td><%= ch.getDapAn() %></td>
+        </tr>
+        <% } %>
+    </table>
+    <input type="submit" value="Thêm vào danh sách tạm">
+</form>
+
+<form method="post" action="hoan-tat-them-cau-hoi">
+    <input type="hidden" name="maDe" value="${param.maDe}">
+    <input type="submit" value="Hoàn tất">
+</form>
+</body>
+</html>

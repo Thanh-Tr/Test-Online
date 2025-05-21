@@ -1,0 +1,10 @@
+package model;
+
+public class TaiKhoan {
+	private String tenDangNhap;
+	private String matKhau;
+	private String maGV;
+	public TaiKhoan() {	}
+	
+	
+}

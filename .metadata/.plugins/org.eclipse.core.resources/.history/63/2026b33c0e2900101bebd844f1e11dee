@@ -1,0 +1,60 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import model.DeThi;
+
+
+public class DeThiDAO {
+	private static final String INSERT_SQL = "INSERT INTO DETHI(MaDT,TenDT,ThoiGianLamBai,MaGV) VALUES(?,?,?,?)";
+	
+	protected Connection getConnection() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/ht_thitructuyen";
+			String user = "root";
+			String password = "842641";
+			connection = DriverManager.getConnection(url, user, password);
+		} catch (ClassNotFoundException cnfe) {
+			cnfe.printStackTrace();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+		return connection;
+	}
+	
+	public void taoDeThi(DeThi dethi) {
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			con = getConnection();
+			pst = con.prepareStatement(INSERT_SQL);
+			pst.setString(1, dethi.getMaDT());
+			pst.setString(2, dethi.getTenDT());
+			pst.setInt(3, dethi.getThoiGianLamBai());
+			pst.setString(4, dethi.getMaGV());
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void themCauHoiVaoDeThi(String maDe, List<String> dsMaCH) {
+	    String sql = "INSERT INTO CTDETHI (MaDe, MaCH) VALUES (?, ?)";
+	    try (Connection con = getConnection();
+	         PreparedStatement pst = con.prepareStatement(sql)) {
+	        for (String maCH : dsMaCH) {
+	            pst.setString(1, maDe);
+	            pst.setString(2, maCH);
+	            pst.addBatch();
+	        }
+	        pst.executeBatch();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } 	
+

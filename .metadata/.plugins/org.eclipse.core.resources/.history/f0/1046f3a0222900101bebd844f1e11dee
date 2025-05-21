@@ -1,0 +1,76 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.CauHoi;
+
+
+public class CauHoiDAO {
+	private static final String INSERT_SQL = "INSERT INTO CAUHOI(MaCH,MoTaCH,CauA,CauB,CauC,CauD,DapAn,MaDT) VALUES(?,?,?,?,?,?,?,?)";
+	
+	protected Connection getConnection() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/ht_thitructuyen";
+			String user = "root";
+			String password = "842641";
+			connection = DriverManager.getConnection(url, user, password);
+		} catch (ClassNotFoundException cnfe) {
+			cnfe.printStackTrace();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+		return connection;
+	}
+	
+	public void themCauHoi (String moTaCH,String cauA,String cauB,String cauC,String cauD,String dapAn,String maDT) {
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			con = getConnection();
+			pst = con.prepareStatement(INSERT_SQL);
+			pst.setString(1, "CH" + System.currentTimeMillis());
+			pst.setString(2, moTaCH);
+			pst.setString(3, cauA);
+			pst.setString(4, cauB);
+			pst.setString(5, cauC);
+			pst.setString(6, cauD);
+			pst.setString(7, dapAn);
+			pst.setString(8, maDT);
+			pst.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+	}
+	public List<CauHoi> layTatCaCauHoi() {
+        List<CauHoi> ds = new ArrayList<>();
+        String sql = "SELECT * FROM CAUHOI";
+        try (Connection con = getConnection();
+             PreparedStatement pst = con.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+                CauHoi ch = new CauHoi();
+                ch.setMaCH(rs.getString("MaCH"));
+                ch.setMoTaCH(rs.getString("MoTaCH"));
+                ch.setCauA(rs.getString("CauA"));
+                ch.setCauB(rs.getString("CauB"));
+                ch.setCauC(rs.getString("CauC"));
+                ch.setCauD(rs.getString("CauD"));
+                ch.setDapAn(rs.getString("DapAn"));
+                ch.setMaDT(rs.getString("MaDT"));
+                ds.add(ch);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ds;
+    }
+	
+}

@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Đăng nhập</title>
+<script>
+	function kiemTraForm(){
+		const user = document.forms["f"]["username"].value;
+		const pass = document.forms["f"]["password"].value;
+		if(!user || !pass){
+			alert("Không được để trống!");
+			return false;
+		}
+		return true;
+	}
+</script>
+</head>
+<body>
+	<h2>Đăng nhập</h2>
+	<form name="f" method="post" action="dangnhap" onsubmit="return kiemTraForm();">
+		<input type="text" name="username" placeholder="Tên đăng nhập"><br>
+		<input type="password" name="password" placeholder="Mật khẩu"><br>
+		<input type="submit" value="Đăng nhập">
+		<div style="color:red;"${error}></div>
+	</form>
+</body>
+</html>

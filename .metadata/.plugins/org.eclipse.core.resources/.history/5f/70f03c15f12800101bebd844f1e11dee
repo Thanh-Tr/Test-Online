@@ -1,0 +1,98 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.HocSinh;
+
+
+public class HocSinhDAO {
+	
+	private static final String SELECT_BY_ID_SQL = "SELECT * FROM HOCSINH WHERE MaHS=?";
+	private static final String SELECT_ALL_SQL = "SELECT * FROM HOCSINH";
+	private static final String INSERT_SQL = "INSERT INTO HOCSINH (MaHS,TenHS,GioiTinh,NgaySinh,Lop) VALUES(?,?,?,?,?)";
+	
+	protected Connection getConnection() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/ht_thitructuyen";
+			String user = "root";
+			String password = "842641";
+			connection = DriverManager.getConnection(url, user, password);
+		} catch (ClassNotFoundException cnfe) {
+			cnfe.printStackTrace();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+		return connection;
+	}
+	
+	
+	public List<HocSinh> layTatCaHocSinh(){
+		List<HocSinh> list = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		try{
+			con = getConnection();
+			pst = con.prepareStatement(SELECT_ALL_SQL);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				HocSinh hs = new HocSinh();
+				hs.setMaHS(rs.getString("MaHS"));
+				hs.setTenHS(rs.getString("TenHS"));
+				hs.setLop(rs.getString("Lop"));
+				hs.setGioiTinh(rs.getBoolean("GioiTinh"));
+				hs.setNgaySinh(rs.getDate("NgaySinh"));
+				list.add(hs);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public HocSinh layThongTinHocSinh(String maHS) {
+		HocSinh hs = new HocSinh();
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			pst = con.prepareStatement(SELECT_BY_ID_SQL);
+			pst.setString(1, maHS);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				hs.setMaHS(rs.getString("MaHS"));
+				hs.setTenHS(rs.getString("TenHS"));
+				hs.setNgaySinh(rs.getDate("NgaySinh"));
+				hs.setGioiTinh(rs.getBoolean("GioiTinh"));
+				hs.setLop(rs.getString("Lop"));
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+		return hs;
+	}
+	
+	public void themThongTinHocSinh(HocSinh hs) {
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			con = getConnection();
+			pst = con.prepareStatement(INSERT_SQL);
+			pst.setString(1, hs.getMaHS());
+			pst.setString(2, hs.getTenHS());
+			pst.setBoolean(3, hs.isGioiTinh());
+			pst.setDate(4, hs.getNgaySinh());
+			pst.setString(5, hs.getLop());
+		}
+	}
+}

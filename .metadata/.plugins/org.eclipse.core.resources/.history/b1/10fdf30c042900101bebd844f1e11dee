@@ -1,0 +1,40 @@
+package controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+import dao.HocSinhDAO;
+import dao.TaiKhoanDAO;
+
+@WebServlet("/giaovien")
+public class GiaoVienServlet extends HttpServlet {
+	
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter("action");
+		
+		if ("danhsach".equals(action)) {
+			request.setAttribute("dsHS", new HocSinhDAO().layTatCaHocSinh());
+			request.getRequestDispatcher("jsp/giaovien/danhsach.jsp").forward(request, response);
+		} else if ("taoTK".equals(action)) {
+			String maHS = request.getParameter("maHS");
+			String pass = "123456";
+			TaiKhoanDAO dao = new TaiKhoanDAO();
+			dao.taoTaiKhoanHocSinh(maHS,pass);
+			response.sendRedirect("giaovien?action=danhsach");
+		} else if ("taodethi".equals(action)) {
+			request.getRequestDispatcher("jsp/giaovien/taodethi.jsp").forward(request, response);
+		}
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		doGet(request, response);
+	}
+
+}

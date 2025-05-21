@@ -1,0 +1,48 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+
+public class CauHoiDAO {
+	private static final String INSERT_SQL = "INSERT INTO CAUHOI(MaCH,MoTaCH,CauA,CauB,CauC,CauD,DapAn,MaDT) VALUES(?,?,?,?,?,?,?,?)";
+	
+	protected Connection getConnection() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/ht_thitructuyen";
+			String user = "root";
+			String password = "842641";
+			connection = DriverManager.getConnection(url, user, password);
+		} catch (ClassNotFoundException cnfe) {
+			cnfe.printStackTrace();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+		return connection;
+	}
+	
+	public void themCauHoi (String moTaCH,String cauA,String cauB,String cauC,String cauD,String dapAn,String maDT) {
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			con = getConnection();
+			pst = con.prepareStatement(INSERT_SQL);
+			pst.setString(1, "CH" + System.currentTimeMillis());
+			pst.setString(2, moTaCH);
+			pst.setString(3, cauA);
+			pst.setString(4, cauB);
+			pst.setString(5, cauC);
+			pst.setString(6, cauD);
+			pst.setString(7, dapAn);
+			pst.setString(8, maDT);
+			pst.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+	}
+	
+}

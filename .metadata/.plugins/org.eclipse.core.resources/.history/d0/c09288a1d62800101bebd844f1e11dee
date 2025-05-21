@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+</head>
+<body>
+    <h2>Chào mừng giáo viên:</h2>
+
+    <ul>
+        <li><a href="../../giaovien?action=danhsach">Quản lý học sinh</a></li>
+        <li><a href="../../giaovien?action=taodethi">Tạo đề thi</a></li>
+        <li><a href="danhsach_dethi.jsp">Xem danh sách đề thi</a></li>
+        <li><a href="../dangxuat.jsp">Đăng xuất</a></li>
+    </ul>
+</body>
+</html>

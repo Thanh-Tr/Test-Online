@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+</head>
+<body>
+    <h2>Xin chào: ${gv.tenGV}</h2>
+    <p>Email: ${gv.email}</p>
+    <p>Số điện thoại: ${gv.sdt}</p>
+    <ul>
+        <form method="post" action="danhsachhocsinh" >
+        	<input type="hidden" name="action" value="dsHS">
+        	<input type="submit" value="Quản lý học sinh">
+        </form>
+        <li><a href="taodethi.jsp">Tạo đề thi</a></li>
+        <li><a href="dangnhap.jsp">Đăng xuất</a></li>
+    </ul>
+</body>
+</html>

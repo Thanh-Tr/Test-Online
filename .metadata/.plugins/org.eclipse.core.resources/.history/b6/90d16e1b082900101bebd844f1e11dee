@@ -1,0 +1,41 @@
+package controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.HocSinh;
+import model.TaiKhoan;
+
+import java.io.IOException;
+import java.util.List;
+
+import dao.HocSinhDAO;
+
+@WebServlet("/danhsachhocsinh")
+public class DanhSachHocSinhServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+        TaiKhoan tk = (TaiKhoan) session.getAttribute("user");
+
+        if (tk == null || tk.getMaGV() == null) {
+            response.sendRedirect("dangnhap.jsp");
+            return;
+        }
+
+        List<HocSinh> dsHocSinh = new HocSinhDAO().layTatCaHocSinh();
+        request.setAttribute("dsHocSinh", dsHocSinh);
+        request.getRequestDispatcher("danhsachhocsinh.jsp").forward(request, response);
+    }
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
