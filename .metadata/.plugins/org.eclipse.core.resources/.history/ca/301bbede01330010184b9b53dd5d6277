@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+</head>
+<body>
+	<a href="#">Trang chủ</a>   
+	<a href="loadStudent">Quản lý học sinh</a>   
+	<a href="loadExam">Quản lý đề thi</a>   
+	<a href="loadResult">Quản lý hồ sơ học tập</a>
+	<a href="formdangnhap.jsp">Đăng xuất</a>
+	<br>
+	<h2>Đây là trang chủ của giáo viên</h2>
+	<p>Mã GV: ${gv.maGV}</p>
+	<p>Tên GV: ${gv.tenGV}</p>
+	<p>Giới tính: ${gv.gioiTinh == false ? 'Nam' : 'Nữ'}</p>
+	<p>Ngày sinh: ${gv.ngaySinh}</p>
+	<p>Số điện thoại: ${gv.sdt}</p>
+	<p>Email: ${gv.email}</p>
+</body>
+</html>

@@ -1,0 +1,35 @@
+/**
+ * 
+ */
+function countdown(minutes){
+	alert("Thời gian làm bài của bạn là: " + minutes + " phút");
+	let seconds = minutes * 60;
+	
+	let countdownInterval = setInterval(function (){
+		//Thân hàm
+		let minutesLeft = Math.floor(seconds / 60); // 65/60 ~ 1.083 --> 1
+		let secondsLeft = seconds % 60; // 65 % 60 = 5;
+		//Format second : hiện số giây theo định dạng 01 02 03 ...
+		let prefixMinuteFormat = minutesLeft < 10 ? "0" : "";
+		let prefixSecondFormat = secondsLeft < 10 ? "0" : "";
+		
+		let displayTime = `${prefixMinuteFormat}${minutesLeft}:${prefixSecondFormat}${secondsLeft}`;
+		
+		console.log("Đang đếm:", displayTime);
+		
+		//Cập nhật vào phần tử HTML có id là timerDisplay
+		document.getElementById("timerDisplay").innerText = `Thời gian còn lại: ${displayTime}`;
+		
+		if (seconds <= 0){
+			clearInterval(countdownInterval);
+			document.getElementById("timerDisplay").innerText = "Đã hết thời gian làm bài!";
+			alert("Hết thời gian");
+			document.getElementById("examForm").submit();
+		} else{
+			seconds--;
+		}
+	}, 1000);	
+}
+
+const timeInput = Number(${thoigianlambai});
+countdown(timeInput);

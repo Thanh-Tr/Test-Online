@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quản lý hồ sơ học tập</title>
+</head>
+<body>
+	<a href="TeacherHomePage.jsp">Trang chủ</a>
+	<a href="loadStudent">Quản lý học sinh</a>
+	<a href="loadExam">Quản lý đề thi</a>
+	<a href="#">Quản lý hồ sơ học tập</a>
+	<a href="formdangnhap.jsp">Đăng xuất</a>
+	<br>
+	<h2>Danh sách kết quả học tập</h2>
+	<table>
+		<tr>
+			<th>Mã HS</th>
+			<th>Mã đề thi</th>
+			<th>Điểm</th>
+		</tr>
+
+		<c:forEach var="kq" items="${listKQ}">
+			<tr>
+				<td>${kq.maHS}</td>
+				<td>${kq.maDT}</td>
+				<td>
+					<fmt:formatNumber value="${(kq.soCauDung * 10.0) / kq.tongSoCau}" type="number" maxFractionDigits="2" />
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
+</body>
+</html>

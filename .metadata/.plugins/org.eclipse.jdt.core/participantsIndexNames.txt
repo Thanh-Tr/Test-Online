@@ -1,0 +1,5 @@
+INDEX VERSION 1.134
+D:\Code\kltn_2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1677932421.index
+\ThiTrucTuyen\src\main\java
+D:\Code\kltn_2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3155200748.index
+\ThiTrucTuyen\src\main\java

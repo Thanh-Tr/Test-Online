@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+D:\Code\kltn_2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3992276116.index
+1676294378.index
+2905685747.index
+1878176926.index
+1279766405.index
+1661586411.index

@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+</head>
+<body>
+	<a href="#">Trang chủ</a>
+	<a href="loadExamHS">Vào thi</a>
+	<a href="loadResultHS">Quản lý hồ sơ cá nhân</a>
+	<a href="formdangnhap.jsp">Đăng xuất</a>
+	<br>
+	<br>
+	<h2>Đây là trang chủ của học sinh</h2>
+	<p>Mã HS: ${hs.maHS}</p>
+	<p>Tên HS: ${hs.tenHS}</p>
+	<p>Giới tính: ${hs.gioiTinh == false ? 'Nam' : 'Nữ'}</p>
+	<p>Ngày sinh: ${hs.ngaySinh}</p>
+	<p>Lớp: ${hs.lop}</p>
+</body>
+</html>

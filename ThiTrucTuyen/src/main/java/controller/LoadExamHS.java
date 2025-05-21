@@ -1,0 +1,30 @@
+package controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import model.DeThi;
+
+import java.io.IOException;
+import java.util.List;
+
+import dao.DeThiDAO;
+
+
+public class LoadExamHS extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<DeThi> listDT = new DeThiDAO().layDanhSachDT();
+		request.setAttribute("listDT", listDT);
+		request.getRequestDispatcher("QLDeThiHS.jsp").forward(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

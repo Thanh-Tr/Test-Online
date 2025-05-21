@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sửa thông tin học sinh</title>
+</head>
+<body>
+	<a href="loadStudent">Quay lại</a>
+	<form method="post" action="updateStudent">
+		Mã học sinh: <input type="text" name="maHS" value="${hs.maHS}" readonly><br>
+		Tên học sinh: <input type="text" name="tenHS" value="${hs.tenHS}"><br>
+		Giới tính: 
+		<c:if test="${hs.gioiTinh == false}">
+			<input type="radio" name="gioiTinh" value="0" checked>Nam 
+			<input type="radio" name="gioiTinh" value="1">Nữ<br>
+		</c:if>
+		<c:if test="${hs.gioiTinh == true}">
+			<input type="radio" name="gioiTinh" value="0">Nam 
+			<input type="radio" name="gioiTinh" value="1" checked>Nữ<br>
+		</c:if>
+		Ngày sinh: <input type="date" name="ngaySinh" value="${hs.ngaySinh}"><br>
+		Lớp: <input type="text" name="lop" value="${hs.lop}"><br>
+		<input type="submit" value="Sửa">
+	</form>
+</body>
+</html>

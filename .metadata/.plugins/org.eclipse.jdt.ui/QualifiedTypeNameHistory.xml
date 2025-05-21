@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="model.TaiKhoan"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.text.ParseException"/>
+    <fullyQualifiedTypeName name="dao.GiaoVienDAO"/>
+    <fullyQualifiedTypeName name="model.GiaoVien"/>
+    <fullyQualifiedTypeName name="dao.HocSinhDAO"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="model.PhieuTraLoi"/>
+    <fullyQualifiedTypeName name="dao.PhieuTraLoiDAO"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="model.DeThi"/>
+    <fullyQualifiedTypeName name="dao.DeThiDAO"/>
+    <fullyQualifiedTypeName name="dao.CauHoiDAO"/>
+    <fullyQualifiedTypeName name="model.CauHoi"/>
+    <fullyQualifiedTypeName name="model.HocSinh"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="model.KetQua"/>
+    <fullyQualifiedTypeName name="dao.KetQuaDAO"/>
+</qualifiedTypeNameHistroy>

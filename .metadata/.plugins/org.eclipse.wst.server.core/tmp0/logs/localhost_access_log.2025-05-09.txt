@@ -1,0 +1,15 @@
+127.0.0.1 - - [09/May/2025:17:23:17 +0700] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:23:18 +0700] "GET /ThiTrucTuyen/loadExam HTTP/1.1" 200 24
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:23:18 +0700] "GET /favicon.ico HTTP/1.1" 404 685
+127.0.0.1 - - [09/May/2025:17:24:34 +0700] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:24:39 +0700] "GET /ThiTrucTuyen/loadExam HTTP/1.1" 200 647
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:25:36 +0700] "GET /ThiTrucTuyen/loadExam HTTP/1.1" 200 659
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:28:51 +0700] "GET /ThiTrucTuyen/loadStudent HTTP/1.1" 200 1474
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:28:54 +0700] "GET /ThiTrucTuyen/updateStudent?mahs=1234567894 HTTP/1.1" 200 717
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:28:56 +0700] "GET /ThiTrucTuyen/loadStudent HTTP/1.1" 200 1474
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:29:02 +0700] "GET /ThiTrucTuyen/TeacherHomePage.jsp HTTP/1.1" 200 529
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:29:06 +0700] "GET /ThiTrucTuyen/loadStudent HTTP/1.1" 200 1474
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:29:11 +0700] "GET /ThiTrucTuyen/ThemHS.jsp HTTP/1.1" 200 590
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:29:12 +0700] "GET /ThiTrucTuyen/loadStudent HTTP/1.1" 200 1474
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:29:15 +0700] "GET /ThiTrucTuyen/loadExam HTTP/1.1" 200 659
+0:0:0:0:0:0:0:1 - - [09/May/2025:17:29:18 +0700] "GET /ThiTrucTuyen/ThemDeThi.jsp HTTP/1.1" 200 1582
